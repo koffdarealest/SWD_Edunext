@@ -3,30 +3,47 @@ package group3.edunext.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Nationalized;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Users")
+@Table(name = "\"User\"")
 public class User {
     @Id
-    @Column(name = "Account", nullable = false, length = 20)
-    private String account;
+    @Column(name = "UserID", nullable = false)
+    private Integer id;
 
-    @Column(name = "Password", nullable = false, length = 20)
+    @Column(name = "Username", nullable = false, length = 100)
+    private String username;
+
+    @Column(name = "Fullname", length = 100)
+    private String fullname;
+
+    @Column(name = "Email", nullable = false, length = 100)
+    private String email;
+
+    @Column(name = "Password", nullable = false)
     private String password;
 
-    @Nationalized
-    @Column(name = "Name", nullable = false, length = 20)
-    private String name;
-
-    @Column(name = "Gender", nullable = false)
-    private Boolean gender = false;
-
-    @Nationalized
-    @Lob
-    @Column(name = "Address")
+    @Column(name = "Address", length = 100)
     private String address;
+
+    @Column(name = "PhoneNumber", length = 15)
+    private String phoneNumber;
+
+    @Column(name = "Gender")
+    private Boolean gender;
+
+    @Column(name = "Dob")
+    private LocalDate dob;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RoleID")
+    private Role roleID;
+
+    @Column(name = "Status", length = 20)
+    private String status;
 
 }
