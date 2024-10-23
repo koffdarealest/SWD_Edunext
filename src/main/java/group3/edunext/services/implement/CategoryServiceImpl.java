@@ -18,4 +18,8 @@ public class CategoryServiceImpl implements ICategoryService {
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    public Category findByCategoryName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName);
+    }
 }
