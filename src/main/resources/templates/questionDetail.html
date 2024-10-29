@@ -81,40 +81,48 @@
 </div>
 <!-- Navbar End -->
 
-<!-- Login Start -->
-<div class="row justify-content-center bg-image mx-0 mb-5">
-    <div class="col-lg-3 py-5">
-        <div class="bg-white p-5 my-5" style="border-radius: 20px">
-            <h1 class="text-center mb-4">Login</h1>
-            <form th:action="@{/login}" th:method="post">
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="text" th:name="username" class="form-control bg-light border-0" placeholder="Username"
-                                   style="padding: 30px 20px; border-radius: 20px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="password" th:name="password" class="form-control bg-light border-0" placeholder="Password"
-                                   style="padding: 30px 20px; border-radius: 20px">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-8">
-                        <button class="btn btn-primary btn-block" type="submit"
-                                style="height: 60px; border-radius: 20px">Login
-                        </button>
-                    </div>
-                </div>
-            </form>
+<!-- Question Detail Start -->
+<div class="container py-5">
+    <div class="card" style="border-radius: 20px">
+        <div class="card-header" style="border-radius: 20px">
+            <h4 th:text="(${question.getQuestionDescription()})"></h4>
+        </div>
+        <div class="card-body">
+            <h5>Content</h5>
+            <p>What are software quality attributes? What do you use software quality attributes for in Software architecture?</p>
+            <div class="mt-3">
+                <p><strong>Discussion time has been started.</strong></p>
+                <p>Time start: <strong th:text="(${question.getCreateDate().toString()})"></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <ul class="nav nav-tabs mt-4">
+        <li class="nav-item">
+            <a class="nav-link active" href="#" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Group</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Discuss</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style="border-top-left-radius: 10px; border-top-right-radius: 10px" >Grade</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" style="border-top-left-radius: 10px; border-top-right-radius: 10px">Teacher's Message</a>
+        </li>
+    </ul>
+
+    <!-- Comment Section -->
+    <div class="mt-4">
+        <label for="comment">Post your comment:</label>
+        <textarea class="form-control" id="comment" rows="4" placeholder="Type your response here..." style="border-radius: 10px"></textarea>
+        <div class="mt-2">
+            <button class="btn btn-primary" style="border-radius: 20px">Send</button>
         </div>
     </div>
 </div>
-<!-- Login End -->
+<!-- Question Detail End -->
 
 <!-- Footer Start -->
 <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 30px;">

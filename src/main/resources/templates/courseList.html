@@ -81,40 +81,34 @@
 </div>
 <!-- Navbar End -->
 
-<!-- Login Start -->
-<div class="row justify-content-center bg-image mx-0 mb-5">
-    <div class="col-lg-3 py-5">
-        <div class="bg-white p-5 my-5" style="border-radius: 20px">
-            <h1 class="text-center mb-4">Login</h1>
-            <form th:action="@{/login}" th:method="post">
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="text" th:name="username" class="form-control bg-light border-0" placeholder="Username"
-                                   style="padding: 30px 20px; border-radius: 20px;">
-                        </div>
+<!-- View courses Start -->
+<div class="container-fluid px-0 py-5">
+    <div class="row mx-0 justify-content-center pt-5">
+        <div class="col-lg-6">
+            <div class="section-title text-center position-relative mb-4">
+                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Your Courses</h6>
+            </div>
+        </div>
+    </div>
+    <div class="owl-carousel courses-carousel">
+        <div class="courses-item position-relative" th:each="course : ${courses}">
+            <img class="img-fluid" src="img/courses-1.jpg" alt="">
+            <div class="courses-text">
+                <h4 class="text-center text-white px-3" th:text="(${course.getCourseDescription()})"></h4>
+                <div class="border-top w-100 mt-3">
+                    <div class="d-flex justify-content-between p-4">
+                        <span class="text-white" th:text="(${course.getCourseName()})"><i class="fa fa-user mr-2"></i></span>
+                        <span class="text-white" th:text="(${course.getCreditPoints()})"><i class="fa fa-star mr-2"></i></span>
                     </div>
                 </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="password" th:name="password" class="form-control bg-light border-0" placeholder="Password"
-                                   style="padding: 30px 20px; border-radius: 20px">
-                        </div>
-                    </div>
+                <div class="w-100 bg-white text-center p-4" >
+                    <a class="btn btn-primary" th:href="@{questionList(courseId=${course.getId()})}">Course Detail</a>
                 </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-8">
-                        <button class="btn btn-primary btn-block" type="submit"
-                                style="height: 60px; border-radius: 20px">Login
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- Login End -->
+<!-- View courses End -->
 
 <!-- Footer Start -->
 <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 30px;">
@@ -193,5 +187,15 @@
     </div>
 </div>
 <!-- Footer End -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 </html>

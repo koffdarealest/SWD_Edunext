@@ -81,40 +81,46 @@
 </div>
 <!-- Navbar End -->
 
-<!-- Login Start -->
-<div class="row justify-content-center bg-image mx-0 mb-5">
-    <div class="col-lg-3 py-5">
-        <div class="bg-white p-5 my-5" style="border-radius: 20px">
-            <h1 class="text-center mb-4">Login</h1>
-            <form th:action="@{/login}" th:method="post">
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="text" th:name="username" class="form-control bg-light border-0" placeholder="Username"
-                                   style="padding: 30px 20px; border-radius: 20px;">
+<!-- View question Start -->
+<div class="container-fluid px-0 py-5">
+    <div class="row mx-0 justify-content-center pt-5">
+        <div class="col-lg-6">
+            <div class="section-title text-center position-relative mb-4">
+                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Question Slots</h6>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slots -->
+    <div class="container">
+        <div class="row">
+            <!-- Loop through 20 slots in Thymeleaf -->
+            <div th:each="i : ${#numbers.sequence(1, 20)}" class="col-lg-12 col-md-6 mb-4">
+                <div class="card" data-toggle="collapse" th:attr="data-target='#slot-' + (${i})" aria-expanded="false" style="border-radius: 20px">
+                    <div class="card-header" style="border-radius: 20px">
+                        <h5 class="mb-0" th:text="'Slot ' + (${i})"></h5>
+                    </div>
+                    <div class="card-body">
+                        <p th:text="'Lesson content of Slot ' + (${i})"></p>
+<!--                        <button class="btn btn-primary" type="button" data-toggle="collapse" th:attr="data-target='#slot-' + (${i})" aria-expanded="false">-->
+<!--                            View Questions-->
+<!--                        </button>-->
+                        <div class="collapse mt-3" th:id="'slot-' + (${i})">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"
+                                    th:each="question : ${questions}"
+                                    th:text="${question.getQuestionDescription()}"
+                                    th:onclick="'window.location.href=\'/questionDetail?questionId=' + ${question.getId()} + '\';'">
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="password" th:name="password" class="form-control bg-light border-0" placeholder="Password"
-                                   style="padding: 30px 20px; border-radius: 20px">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row justify-content-center m-3">
-                    <div class="col-sm-8">
-                        <button class="btn btn-primary btn-block" type="submit"
-                                style="height: 60px; border-radius: 20px">Login
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- Login End -->
+<!-- View question End -->
 
 <!-- Footer Start -->
 <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 30px;">
@@ -193,5 +199,15 @@
     </div>
 </div>
 <!-- Footer End -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 </html>

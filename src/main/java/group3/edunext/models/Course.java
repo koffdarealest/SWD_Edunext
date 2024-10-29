@@ -36,4 +36,5 @@ public class Course {
     @Column(name = "Status", length = 20)
     private String status;
 
+
 }
