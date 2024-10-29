@@ -80,7 +80,14 @@
     </nav>
 </div>
 <!-- Navbar End -->
-
+<div class="container-fluid px-0 py-5">
+    <form th:action="@{/coursesList}" method="post">
+        <select name="semester">
+             <option th:each="s : ${semesters}" th:value="${s.id}" th:text="${s.semesterName}"></option>
+        </select>
+    <button type="submit">Search</button>
+    </form>
+</div>
 <!-- View courses Start -->
 <div class="container-fluid px-0 py-5">
     <div class="row mx-0 justify-content-center pt-5">

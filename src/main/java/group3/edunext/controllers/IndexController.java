@@ -19,8 +19,10 @@ public class IndexController {
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(@RequestParam String username, @RequestParam String password) {
         if (userService.getUserByLoginInfo(username, password).isPresent()) {
+            int id = userService.getUserByLoginInfo(username, password).get().getId();
             return "redirect:/coursesList";
         }
+        int id = userService.getUserByLoginInfo(username, password).get().getId();
         return "redirect:/";
     }
 

@@ -115,10 +115,25 @@
 
     <!-- Comment Section -->
     <div class="mt-4">
-        <label for="comment">Post your comment:</label>
-        <textarea class="form-control" id="comment" rows="4" placeholder="Type your response here..." style="border-radius: 10px"></textarea>
+        <form th:action="@{/questionDetail}" method="post"> >
+        <label for="comment">Post your Answer:</label>
+        <textarea name="content" class="form-control" id="comment" rows="4" placeholder="Type your response here..." style="border-radius: 10px"></textarea>
+        <input type="hidden" name="questionId" th:value="${question.getId()}">
         <div class="mt-2">
             <button class="btn btn-primary" style="border-radius: 20px">Send</button>
+        </div>
+        </form>
+    </div>
+    <div class="mt-4">
+        <div class="d-flex m-3" th:each="s : ${answer}">
+
+            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+            <div class="ms-3">
+                <div class="fw-bold font-weight-bold" th:text="${s.getStudentID().getUserID().getUsername()}"></div>
+                <input type="text" readonly class="m-1 form-control" th:value="${s.getAnswer()}"/>
+
+            </div>
+
         </div>
     </div>
 </div>

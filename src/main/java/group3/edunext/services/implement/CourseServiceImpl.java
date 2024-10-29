@@ -6,6 +6,7 @@ import group3.edunext.services.ICourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,5 +24,16 @@ public class CourseServiceImpl implements ICourseService {
     @Override
     public Course getCourseById(int courseId) {
         return courseRepository.findById(courseId).orElse(null);
+    }
+
+    @Override
+    public List<Course> getMyCourses(Integer studentId, Integer semesterId) {
+        List<Course> result = courseRepository.getMyCourse1(studentId, semesterId);
+        for (Course course : result) {
+            if (!course.getStatus().equals(("Active"))) {
+                result.remove(course);
+            }
+        }
+        return result;
     }
 }

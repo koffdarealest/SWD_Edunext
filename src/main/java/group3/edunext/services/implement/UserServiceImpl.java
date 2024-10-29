@@ -1,6 +1,8 @@
 package group3.edunext.services.implement;
 
+import group3.edunext.models.Student;
 import group3.edunext.models.User;
+import group3.edunext.repositories.IStudentRepository;
 import group3.edunext.repositories.IUserRepository;
 import group3.edunext.services.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;
+    private final IStudentRepository studentRepository;
 
     @Override
     public Optional<User> getUserByLoginInfo(String username, String password) {
@@ -23,4 +26,11 @@ public class UserServiceImpl implements IUserService {
             return Optional.empty();
         }
     }
+
+    @Override
+    public Student getStudent(int userId) {
+        return studentRepository.findStudentByUserID(userId);
+    }
+
+
 }
