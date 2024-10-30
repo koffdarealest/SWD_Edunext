@@ -74,4 +74,16 @@ public class QuestionController {
         model.addAttribute("question", question);
         return "questionDetail";
     }
+    public String createQuestion(Question question) {
+        // verify question data
+        //Insert to database
+        return "QuestionForm";
+    }
+    public String upodateQuestion(Question question) {
+        //Check question.id is exist in database
+        //Check login session has permission to update
+        // verify question data
+        //Update question to database
+        return "QuestionForm";
+    }
 }
